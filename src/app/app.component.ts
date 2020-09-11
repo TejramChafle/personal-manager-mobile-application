@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
@@ -7,23 +7,26 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+
+export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private push: Push
   ) {
     this.initializeApp();
 
@@ -48,5 +51,55 @@ export class MyApp {
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+
+
+  // On application load, check the push notification requirements and generate token
+  ngOnInit() {
+
+    alert('ngOnInit working!');
+    // to check if we have permission
+    this.push.hasPermission()
+      .then((res: any) => {
+        alert(JSON.stringify(res));
+        if (res.isEnabled) {
+          console.log('We have permission to send push notifications');
+          alert('We have permission to send push notifications.');
+        } else {
+          console.log('We do not have permission to send push notifications');
+          alert('We do not have permission to send push notifications');
+        }
+      });
+
+    // to initialize push notifications
+
+    const options: PushOptions = {
+      android: {
+        senderID: '1072996084283'
+      },
+      ios: {
+        alert: 'true',
+        badge: true,
+        sound: 'false'
+      }
+    };
+
+    const pushObject: PushObject = this.push.init(options);
+
+
+    pushObject.on('notification').subscribe((notification: any) => {
+      console.log('Received a notification', notification);
+      alert('Received a notification '+ JSON.stringify(notification));
+    });
+
+    pushObject.on('registration').subscribe((registration: any) => {
+      console.log('Device registered', registration);
+      alert('Device registered ' + JSON.stringify(registration));
+    });
+
+    pushObject.on('error').subscribe(error => {
+      console.error('Error with Push plugin', error);
+      alert('Error with Push plugin '+JSON.stringify(error));
+    });
   }
 }
