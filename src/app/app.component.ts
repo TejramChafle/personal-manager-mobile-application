@@ -1,3 +1,4 @@
+import { AppProvider } from './app.provider';
 import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
@@ -9,12 +10,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
-
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.component.html'
 })
 
-export class MyApp implements OnInit {
+export class Application implements OnInit {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
@@ -26,7 +26,8 @@ export class MyApp implements OnInit {
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private push: Push
+    private push: Push,
+    public appProvider: AppProvider
   ) {
     this.initializeApp();
 
@@ -57,14 +58,13 @@ export class MyApp implements OnInit {
   // On application load, check the push notification requirements and generate token
   ngOnInit() {
 
-    alert('ngOnInit working!');
     // to check if we have permission
     this.push.hasPermission()
       .then((res: any) => {
         alert(JSON.stringify(res));
         if (res.isEnabled) {
           console.log('We have permission to send push notifications');
-          alert('We have permission to send push notifications.');
+          // alert('We have permission to send push notifications.');
         } else {
           console.log('We do not have permission to send push notifications');
           alert('We do not have permission to send push notifications');
@@ -94,12 +94,15 @@ export class MyApp implements OnInit {
 
     pushObject.on('registration').subscribe((registration: any) => {
       console.log('Device registered', registration);
-      alert('Device registered ' + JSON.stringify(registration));
+      // alert('Device registered ' + JSON.stringify(registration));
+      this.appProvider.registrationId = registration.registrationId;
     });
 
     pushObject.on('error').subscribe(error => {
       console.error('Error with Push plugin', error);
       alert('Error with Push plugin '+JSON.stringify(error));
     });
+
+    // this.appProvider.registrationId = '1072996084283';
   }
 }
