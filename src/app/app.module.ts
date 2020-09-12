@@ -7,11 +7,13 @@ import { Application } from './app.component';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
+import { LauncherPageModule } from '../pages/launcher/launcher.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push } from '@ionic-native/push';
 import { AppProvider } from './app.provider';
+import { AuthProvider } from '../pages/auth/auth.provider';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { AppProvider } from './app.provider';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(Application),
+    LauncherPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,7 +40,8 @@ import { AppProvider } from './app.provider';
     SplashScreen,
     Push,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AppProvider
+    AppProvider,
+    AuthProvider
   ]
 })
-export class AppModule { }
+export class ApplicationModule { }

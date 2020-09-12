@@ -1,0 +1,12 @@
+
+// Google fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+// Fonts variable
+$font-primary: "Montserrat", sans-serif;
+$font-secondary: "Roboto", sans-serif;
+
+html {
+    font-size: 62.5%; // 10px as compared to 16px i.e. default font size of most browsers
+}

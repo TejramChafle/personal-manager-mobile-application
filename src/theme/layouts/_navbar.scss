@@ -1,0 +1,26 @@
+@import '../abstracts/variables';
+
+aside {
+    width: 30%;
+}
+#nav-pane {
+    padding: 2rem;
+    margin-top: 2rem;
+    font-size: $font-size;
+    height: 85vh;
+    min-width: 30rem;
+    background-color: $color-secondary;
+    color: #fff;
+    a {
+        display: block;
+        text-decoration: none;
+        padding: 1rem;
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        &:hover {
+            color: #fff;
+            background-color: $color-primary;
+            border-bottom: 1px solid $color-primary;
+        }
+    }
+}

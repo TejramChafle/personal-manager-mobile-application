@@ -1,0 +1,31 @@
+
+// Abstracts
+@import './abstracts/variables';
+@import './abstracts/fonts';
+@import './abstracts/mixins';
+
+// Components
+@import './components/buttons';
+@import './components/inputs';
+@import './components/loading';
+
+// Layouts
+@import './layouts/header';
+@import './layouts/footer';
+@import './layouts/navbar';
+
+// Default styling
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+body {
+    // font-size: 1.8rem;
+    // line-height: 1.8;
+    // padding: 2rem;
+    box-sizing: border-box;
+    font-family: $font-primary;
+    font-weight: 400;
+}

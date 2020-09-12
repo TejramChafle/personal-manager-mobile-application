@@ -1,0 +1,11 @@
+@import '../abstracts/variables';
+
+header {
+    padding: 2rem;
+    font-family: $font-primary;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.8;
+    background-color: $color-secondary;
+    color: $color-primary;
+}

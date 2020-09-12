@@ -1,0 +1,15 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    // width: calc(100%-20px);
+    width: 100%;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    a {
+        color: #fff;
+    }
+}

@@ -1,0 +1,58 @@
+@import '../../theme/styles';
+
+page-launcher {
+    overflow: hidden;
+    #launcher-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+    }
+
+    .laucher {
+        &__header {
+            position: fixed;
+            top: 0;
+            color: #f1f1f1;
+            width: 100%;
+            text-align: center;
+            padding: 25px;
+            h1 {
+                font-family: $font-secondary;
+                font-size: 5.5rem;
+                font-weight: 300;
+            }
+            z-index: 99;
+        }
+        &__footer {
+            font-family: $font-primary;
+            position: fixed;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            p {
+                line-height: 1.5;
+            }
+            &--button {
+                margin: 10px auto;
+                padding: 15px;
+                text-transform: uppercase;
+                display: block;
+                width: 50%;
+            }
+            
+        }
+    }
+
+    .btn-light {
+        background-color: #eee;
+    }
+    .btn-primary {
+        background-color: #000;
+        color: #eee;
+    }
+}

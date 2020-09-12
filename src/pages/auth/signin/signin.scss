@@ -1,0 +1,27 @@
+@import '../../../theme/styles.scss';
+
+page-signin {
+    ion-item {
+        padding-left: 0px
+    }
+    .login {
+        background-color: #777;
+        font-family: $font-primary;
+        &__card {
+            margin-top: 5rem;
+        }
+        &__brand {
+            text-align: center;
+            img {
+                margin: 1rem auto;
+                width: 15rem;
+            }
+        }
+
+        &__signup {
+            text-align: center;
+            padding: 15px 0px;
+            font-size: 2rem;
+        }
+    }
+}
