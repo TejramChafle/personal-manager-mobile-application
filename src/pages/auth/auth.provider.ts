@@ -23,11 +23,13 @@ export class AuthProvider {
         const auth = { email: param.username, password: param.password, returnSecureToken: true };
         return this._http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + FIREBASE_CONFIG.API_KEY, auth).pipe(
             tap((auth) => {
-                console.log('auth', auth);
+                // console.log('auth', auth);
                 this.auth.next(auth);
             }),
             catchError((error) => {
+                console.log(error);
                 // return throwError(error);
+                this._appService.handleError(error);
                 return error;
             })
         )

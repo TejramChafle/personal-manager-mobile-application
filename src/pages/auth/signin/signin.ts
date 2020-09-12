@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { AuthProvider } from '../auth.provider';
-
+import { AppProvider } from '../../../app/app.provider';
 @IonicPage()
 @Component({
   selector: 'page-signin',
@@ -11,9 +11,12 @@ import { AuthProvider } from '../auth.provider';
 
 export class SigninPage {
   loginForm: NgForm;
-  loading: boolean;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _authProvider: AuthProvider) {
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _authProvider: AuthProvider, 
+    private _appProvider: AppProvider) {
   }
 
   ionViewDidLoad() {
@@ -21,12 +24,14 @@ export class SigninPage {
   }
 
   onLogin(form: NgForm) {
-    this.loading = true;
+    this._appProvider.presentLoading('Authenticating..');
     this._authProvider.login(form).subscribe((response) => {
-      this.loading = false;
+      console.log(response);
+      localStorage.setItem('auth', response);
       this.navCtrl.setRoot('HomePage');
+      this._appProvider.dismissLoading();
     }, (error) => {
-      this.loading = false;
+      this._appProvider.dismissLoading();
     })
   }
 

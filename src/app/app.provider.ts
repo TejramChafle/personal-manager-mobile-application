@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 /*
   Generated class for the AppProvider provider.
@@ -11,29 +13,33 @@ import { Injectable } from '@angular/core';
 
 export class AppProvider {
   registrationId: string;
+  loading: any;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello AppProvider Provider');
   }
 
   public actionMessage(message: { title: string, text: string }) {
-    alert(JSON.stringify(message));
-    /* this._snackBar.open(message.text, 'Close', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    }); */
+    // alert(JSON.stringify(message));
+    const alert = this.alertCtrl.create({
+      title: message.title,
+      subTitle: message.text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   public handleError(error) {
-    // console.log(error);
+    console.log(error);
     if (error.error.error.message == 'INVALID_ID_TOKEN') {
       localStorage.clear();
       // this._router.navigate(['/login']);
     } else if (error.statusText == 'Unauthorized' && error.error.error == 'Auth token is expired') {
-      this.actionMessage({ text: 'Login expired, Please login again.', title: 'Close' });
+      this.actionMessage({ text: 'Login expired, Please login again.', title: 'Session expired!' });
       localStorage.clear();
       // this._router.navigate(['/login']);
+    } else {
+      this.actionMessage({ title: 'Alert!', text: error.error.error.message });
     }
   }
 
@@ -88,5 +94,22 @@ export class AppProvider {
       hours: hrs ? hrs.toFixed() : null,
       minutes: mins ? mins : (hrs ? 0 : null)
     }
+  }
+
+
+  // Show loading on screen with message if set
+  presentLoading(message?: string) {
+    this.loading = this.loadingCtrl.create({
+      content: message || 'Please wait...',
+      spinner: 'crescent',
+      showBackdrop: true
+    });
+
+    this.loading.present();
+  }
+
+  // Dismiss loading
+  dismissLoading() {
+    this.loading.dismiss();
   }
 }

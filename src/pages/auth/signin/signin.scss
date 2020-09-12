@@ -2,14 +2,16 @@
 
 page-signin {
     ion-item {
-        padding-left: 0px
+        padding-left: 0px !important;
     }
     .login {
         background-color: #777;
         font-family: $font-primary;
+
         &__card {
             margin-top: 5rem;
         }
+        
         &__brand {
             text-align: center;
             img {
@@ -22,6 +24,9 @@ page-signin {
             text-align: center;
             padding: 15px 0px;
             font-size: 2rem;
+            h1 {
+                margin-bottom: 15px;
+            }
         }
     }
 }

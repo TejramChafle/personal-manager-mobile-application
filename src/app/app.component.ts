@@ -5,7 +5,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
-import { LauncherPage } from '../pages/launcher/launcher';
+// import { LauncherPage } from '../pages/launcher/launcher';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +19,7 @@ export class Application implements OnInit {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LauncherPage;
+  rootPage = localStorage.getItem('auth') ? 'HomePage' : 'LauncherPage';
   pages: Array<{ title: string, component: any }>;
 
   constructor(
