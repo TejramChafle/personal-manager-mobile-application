@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { AuthProvider } from '../auth.provider';
 import { AppProvider } from '../../../app/app.provider';
+
 @IonicPage()
 @Component({
   selector: 'page-signin',
@@ -11,7 +12,7 @@ import { AppProvider } from '../../../app/app.provider';
 
 export class SigninPage {
   loginForm: NgForm;
-  
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 

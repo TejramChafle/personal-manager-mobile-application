@@ -1,15 +1,40 @@
-<!--
-  Generated template for the SignupPage page.
+<ion-content class="login" padding>
+  <ion-card class="login__card">
+    <div class="login__brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Angular_one_color_inverse_logo.svg/1024px-Angular_one_color_inverse_logo.svg.png">
+    </div>
+    <ion-card-content>
+      <form class="login__form" #signupForm="ngForm" (ngSubmit)="signupForm.valid && onSignup(signupForm.value)">
+        <ion-item>
+          <ion-label stacked>Full Name</ion-label>
+          <ion-input type="text" name="name" ngModel #name="ngModel" required placeholder="Enter your full name here"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input type="email" name="email" ngModel #email="ngModel" required placeholder="Enter your email here"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input type="password" name="password" ngModel #password="ngModel" required placeholder="Set your password here"></ion-input>
+        </ion-item>
+        
+        <div class="login__form--terms">
+          <ion-item >
+            <ion-label for="terms">I agree all statements in</ion-label>
+            <ion-checkbox name="terms" ngModel #terms="ngModel" required></ion-checkbox>
+          </ion-item>
+          <ion-item class="login__form--terms-link"><ion-label (click)="onTermsClick()">Terms of service</ion-label></ion-item>
+        </div>
+        
+        
+        <button ion-button block color="dark" type="submit">Signup</button>
+      </form>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>signup</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-
+      <div class="login__alternatives"></div>
+      <div class="login__signup">
+        <h3>Already registered?</h3>
+        <button ion-button block color="light" type="button" (click)="onSignin()">Signin</button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

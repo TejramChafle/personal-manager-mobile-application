@@ -1,3 +1,46 @@
+@import '../../../theme/styles.scss';
+
 page-signup {
 
+    .login {
+        background-color: #777;
+        font-family: $font-primary;
+
+        &__card {
+            margin-top: 5rem;
+        }
+        
+        &__brand {
+            text-align: center;
+            img {
+                margin: 1rem auto;
+                width: 15rem;
+            }
+        }
+
+        &__signup {
+            text-align: center;
+            padding: 15px 0px;
+            font-size: 2rem;
+            h3 {
+                margin-bottom: 15px;
+            }
+        }
+
+        &__form {
+            ion-item {
+                padding-left: 0px !important;
+            }
+
+            &--terms {
+                ion-item {
+                    font-size: 1.2rem;
+                }
+                &-link {
+                    color:green;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
 }

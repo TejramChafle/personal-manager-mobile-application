@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { AuthProvider } from '../pages/auth/auth.provider';
 
 @Component({
   templateUrl: 'app.component.html'
@@ -20,7 +21,7 @@ export class Application implements OnInit {
 
   // make HelloIonicPage the root (or first) page
   rootPage = localStorage.getItem('auth') ? 'HomePage' : 'LauncherPage';
-  pages: Array<{ title: string, component: any }>;
+  pages: Array<{ icon: string, title: string, component: any }>;
 
   constructor(
     public platform: Platform,
@@ -28,14 +29,17 @@ export class Application implements OnInit {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private push: Push,
-    public appProvider: AppProvider
+    public appProvider: AppProvider,
+    public authProvider: AuthProvider
   ) {
     this.initializeApp();
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      { icon: 'analytics', title: 'Hello Ionic', component: HelloIonicPage },
+      { icon: 'list', title: 'My First List', component: ListPage },
+      { icon: 'home', title: 'Home', component: 'HomePage' },
+      { icon: 'log-out', title: 'Logout', component: 'SigninPage' }
     ];
   }
 
@@ -51,6 +55,9 @@ export class Application implements OnInit {
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
+    if (page.title == 'Logout') {
+      this.authProvider.logout();
+    }
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }

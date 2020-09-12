@@ -36,7 +36,7 @@ export class AuthProvider {
     }
 
     public signup(params): Observable<any> {
-        const auth = { email: params.username, password: params.password, returnSecureToken: true };
+        const auth = { email: params.email, password: params.password, returnSecureToken: true };
         return this._http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + FIREBASE_CONFIG.API_KEY, auth).pipe(
             tap((auth) => {
                 this.auth.next(auth);

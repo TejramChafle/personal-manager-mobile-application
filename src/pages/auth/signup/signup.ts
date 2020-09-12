@@ -1,25 +1,49 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NgForm } from '@angular/forms';
+import { AuthProvider } from '../auth.provider';
+import { AppProvider } from '../../../app/app.provider';
 
 @IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
+
 export class SignupPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  signupForm: NgForm;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _authProvider: AuthProvider, 
+    private _appProvider: AppProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
+  }
+
+  onSignup(form: NgForm) {
+    this._appProvider.presentLoading('Saving..');
+    console.log(form);
+    this._authProvider.signup(form).subscribe((response) => {
+      console.log(response);
+      localStorage.setItem('auth', response);
+      this.navCtrl.setRoot('HomePage');
+      this._appProvider.dismissLoading();
+    }, (error) => {
+      this._appProvider.dismissLoading();
+    })
+  }
+
+  onSignin() {
+    this.navCtrl.setRoot('SigninPage');
+  }
+
+  onTermsClick() {
+    console.log('onTermsClick');
   }
 
 }
