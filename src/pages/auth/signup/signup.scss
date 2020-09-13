@@ -6,6 +6,20 @@ page-signup {
         background-color: #777;
         font-family: $font-primary;
 
+        form {
+            .input.ng-touched.ng-dirty.ng-valid {
+                border-bottom: 2px solid #26A69A;
+            }
+    
+            .input.ng-touched.ng-dirty.ng-invalid {
+                border-bottom: 2px solid #E57373;
+            }
+        }
+
+        input { 
+            font-size: 15px;
+        }
+        
         &__card {
             margin-top: 5rem;
         }
@@ -33,14 +47,25 @@ page-signup {
             }
 
             &--terms {
-                ion-item {
-                    font-size: 1.2rem;
-                }
+                margin: 10px 0px 15px;
                 &-link {
-                    color:green;
+                    color:#26A69A;
                     text-decoration: underline;
+                }
+                &-warning {
+                    color:#E57373;
+                    padding: 10px 0px;
                 }
             }
         }
+    }
+
+    .ion-invalid.ion-touched ion-label {
+        color: var(--ion-color-danger);
+    }
+
+    /** For form invalid field for Angular*/
+    input.ng-invalid.ng-touched{
+        border: 1px solid red;
     }
 }

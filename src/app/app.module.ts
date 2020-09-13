@@ -14,13 +14,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push } from '@ionic-native/push';
 import { AppProvider } from './app.provider';
 import { AuthProvider } from '../pages/auth/auth.provider';
+import { ServiceTermsPage } from '../pages/auth/service-terms/service-terms';
 
 @NgModule({
   declarations: [
     Application,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    ServiceTermsPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { AuthProvider } from '../pages/auth/auth.provider';
     Application,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    ServiceTermsPage
   ],
   providers: [
     StatusBar,

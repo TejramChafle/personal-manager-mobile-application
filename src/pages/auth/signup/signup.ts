@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { AuthProvider } from '../auth.provider';
 import { AppProvider } from '../../../app/app.provider';
+import { ServiceTermsPage } from '../service-terms/service-terms';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,8 @@ export class SignupPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private _authProvider: AuthProvider, 
-    private _appProvider: AppProvider) {
+    private _appProvider: AppProvider,
+    public _modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -34,6 +36,7 @@ export class SignupPage {
       this.navCtrl.setRoot('HomePage');
       this._appProvider.dismissLoading();
     }, (error) => {
+      console.log(error);
       this._appProvider.dismissLoading();
     })
   }
@@ -44,6 +47,8 @@ export class SignupPage {
 
   onTermsClick() {
     console.log('onTermsClick');
+    let serviceModal = this._modalCtrl.create(ServiceTermsPage);
+    serviceModal.present();
   }
 
 }

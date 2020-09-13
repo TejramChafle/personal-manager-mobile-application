@@ -19,14 +19,10 @@
         </ion-item>
         
         <div class="login__form--terms">
-          <ion-item >
-            <ion-label for="terms">I agree all statements in</ion-label>
-            <ion-checkbox name="terms" ngModel #terms="ngModel" required></ion-checkbox>
-          </ion-item>
-          <ion-item class="login__form--terms-link"><ion-label (click)="onTermsClick()">Terms of service</ion-label></ion-item>
+          <input type="checkbox" id="terms" name="terms" ngModel #terms="ngModel" required>
+          <label for="terms"> I agree all statements in</label> <span class="login__form--terms-link" (click)="onTermsClick()">Terms of service</span>
+          <div class="login__form--terms-warning" *ngIf="terms.invalid && signupForm.submitted">You must agree terms of service</div>
         </div>
-        
-        
         <button ion-button block color="dark" type="submit">Signup</button>
       </form>
 
