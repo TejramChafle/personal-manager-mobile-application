@@ -39,6 +39,7 @@ export class Application implements OnInit {
       { icon: 'analytics', title: 'Hello Ionic', component: HelloIonicPage },
       { icon: 'list', title: 'My First List', component: ListPage },
       { icon: 'home', title: 'Home', component: 'HomePage' },
+      { icon: 'calendar', title: 'Calendar', component: 'CalendarPage' },
       { icon: 'log-out', title: 'Logout', component: 'SigninPage' }
     ];
   }

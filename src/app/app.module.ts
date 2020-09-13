@@ -15,6 +15,7 @@ import { Push } from '@ionic-native/push';
 import { AppProvider } from './app.provider';
 import { AuthProvider } from '../pages/auth/auth.provider';
 import { ServiceTermsPage } from '../pages/auth/service-terms/service-terms';
+import { ScheduleEventPage } from '../pages/schedule-event/schedule-event';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ServiceTermsPage } from '../pages/auth/service-terms/service-terms';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    ServiceTermsPage
+    ServiceTermsPage,
+    ScheduleEventPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { ServiceTermsPage } from '../pages/auth/service-terms/service-terms';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    ServiceTermsPage
+    ServiceTermsPage,
+    ScheduleEventPage
   ],
   providers: [
     StatusBar,

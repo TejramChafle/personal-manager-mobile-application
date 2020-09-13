@@ -1,0 +1,19 @@
+page-calendar {
+    .schedule-modal {
+        position: static;
+        display: block;
+        width: 90%;
+        height: 80%;
+        contain: strict;
+        margin: 50px auto;
+    }
+
+    ion-modal {
+        position: static;
+        display: block;
+        width: 90%;
+        height: 80%;
+        contain: strict;
+        margin: 50px auto;
+    }
+}
