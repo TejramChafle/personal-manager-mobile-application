@@ -1,5 +1,6 @@
 export const FIREBASE_CONFIG = {
-  API_KEY: "AIzaSyDrF3MrUSxyKzSCnHZjWy8gcynUUxknr_g",
+  // API_KEY: "AIzaSyDrF3MrUSxyKzSCnHZjWy8gcynUUxknr_g",
+  API_KEY: "http://localhost:3000/",
   authDomain: "ng-personal-manager.firebaseapp.com",
   databaseURL: "https://ng-personal-manager.firebaseio.com",
   projectId: "ng-personal-manager",

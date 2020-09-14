@@ -32,7 +32,7 @@ export class SignupPage {
     console.log(form);
     this._authProvider.signup(form).subscribe((response) => {
       console.log(response);
-      localStorage.setItem('auth', response);
+      localStorage.setItem('auth', JSON.stringify(response));
       this.navCtrl.setRoot('HomePage');
       this._appProvider.dismissLoading();
     }, (error) => {

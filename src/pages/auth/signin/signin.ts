@@ -32,6 +32,7 @@ export class SigninPage {
       this.navCtrl.setRoot('HomePage');
       this._appProvider.dismissLoading();
     }, (error) => {
+      console.log(error);
       this._appProvider.dismissLoading();
     })
   }

@@ -20,8 +20,22 @@ export class AuthProvider {
 
 
     public login(param): Observable<any> {
-        const auth = { email: param.username, password: param.password, returnSecureToken: true };
+        /* const auth = { email: param.username, password: param.password, returnSecureToken: true };
         return this._http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + FIREBASE_CONFIG.API_KEY, auth).pipe(
+            tap((auth) => {
+                // console.log('auth', auth);
+                this.auth.next(auth);
+            }),
+            catchError((error) => {
+                console.log(error);
+                // return throwError(error);
+                this._appService.handleError(error);
+                return error;
+            })
+        ) */
+
+        const auth = { email: param.username, password: param.password };
+        return this._http.post(FIREBASE_CONFIG.API_KEY + 'auth/login', auth).pipe(
             tap((auth) => {
                 // console.log('auth', auth);
                 this.auth.next(auth);
@@ -36,8 +50,19 @@ export class AuthProvider {
     }
 
     public signup(params): Observable<any> {
-        const auth = { email: params.email, password: params.password, returnSecureToken: true };
+        /* const auth = { email: params.email, password: params.password, returnSecureToken: true };
         return this._http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + FIREBASE_CONFIG.API_KEY, auth).pipe(
+            tap((auth) => {
+                this.auth.next(auth);
+            }),
+            catchError((error) => {
+                // return throwError(error);
+                return error;
+            })
+        ) */
+
+        const auth = { name: params.name, email: params.email, password: params.password, device: params.device };
+        return this._http.post(FIREBASE_CONFIG.API_KEY + 'auth/signup', auth).pipe(
             tap((auth) => {
                 this.auth.next(auth);
             }),
@@ -76,19 +101,19 @@ export class AuthProvider {
     get user() {
         let user;
         this.auth.pipe(take(1)).subscribe((repsonse) => {
-          if (repsonse) {
-            localStorage.setItem('auth', JSON.stringify(repsonse));
-            user = repsonse;
-          } else {
-            user = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null;
-          }
+            if (repsonse) {
+                localStorage.setItem('auth', JSON.stringify(repsonse));
+                user = repsonse;
+            } else {
+                user = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null;
+            }
         });
         return user;
-      }
-    
-      logout() {
+    }
+
+    logout() {
         localStorage.clear();
         this.auth.next(null);
-      }
+    }
 
 }

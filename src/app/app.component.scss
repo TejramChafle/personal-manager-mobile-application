@@ -1,3 +1,4 @@
+@import '../theme/styles.scss';
 // http://ionicframework.com/docs/theming/
 
 
@@ -14,3 +15,39 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.menu {
+    font-family: $font-primary;
+    &__header {
+        background-color: #E0E0E0;
+        text-align: center;
+        padding: 25px;
+        &--userprofile {
+            img {
+                height: 125px;
+                width: 125px;
+                border-radius: 50%;
+            }
+        }
+
+        &--userinfo {
+            text-align: center;
+            font-size: 2.5rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        &--button {
+            background-color: #000;
+            color: honeydew;
+            padding: 10px 15px;
+        }
+    }
+
+    &__content {
+        margin: 25px 0px;
+        button {
+            border-bottom: 1px solid #E0E0E0;
+        }
+    }
+}
