@@ -1,10 +1,10 @@
-<ion-content class="login" padding>
-  <ion-card class="login__card">
-    <div class="login__brand">
+<ion-content class="signup" padding>
+  <ion-card class="signup__card">
+    <div class="signup__brand">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Angular_one_color_inverse_logo.svg/1024px-Angular_one_color_inverse_logo.svg.png">
     </div>
     <ion-card-content>
-      <form class="login__form" #signupForm="ngForm" (ngSubmit)="signupForm.valid && onSignup(signupForm.value)">
+      <form class="signup__form" #signupForm="ngForm" (ngSubmit)="signupForm.valid && onSignup(signupForm.value)">
         <ion-item>
           <ion-label stacked>Full Name</ion-label>
           <ion-input type="text" name="name" ngModel #name="ngModel" required placeholder="Enter your full name here"></ion-input>
@@ -18,16 +18,16 @@
           <ion-input type="password" name="password" ngModel #password="ngModel" required placeholder="Set your password here"></ion-input>
         </ion-item>
         
-        <div class="login__form--terms">
+        <div class="signup__form--terms">
           <input type="checkbox" id="terms" name="terms" ngModel #terms="ngModel" required>
-          <label for="terms"> I agree all statements in</label> <span class="login__form--terms-link" (click)="onTermsClick()">Terms of service</span>
-          <div class="login__form--terms-warning" *ngIf="terms.invalid && signupForm.submitted">You must agree terms of service</div>
+          <label for="terms"> I agree all statements in</label> <span class="signup__form--terms-link" (click)="onTermsClick()">Terms of service</span>
+          <div class="signup__form--terms-warning" *ngIf="terms.invalid && signupForm.submitted">You must agree terms of service</div>
         </div>
         <button ion-button block color="dark" type="submit">Signup</button>
       </form>
 
-      <div class="login__alternatives"></div>
-      <div class="login__signup">
+      <div class="signup__alternatives"></div>
+      <div class="signup__signup">
         <h3>Already registered?</h3>
         <button ion-button block color="light" type="button" (click)="onSignin()">Signin</button>
       </div>

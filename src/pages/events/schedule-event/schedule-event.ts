@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, IonicPage } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 import * as moment from 'moment';
 
 @Component({
@@ -9,7 +9,7 @@ import * as moment from 'moment';
 
 export class ScheduleEventPage {
   
-  event = { date: new Date(), startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
+  event = { title: null, description: null, startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false, monthLoop: false };
   minDate = new Date().toISOString();
 
   constructor(public viewCtrl: ViewController, public navParams: NavParams) {

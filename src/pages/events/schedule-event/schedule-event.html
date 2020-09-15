@@ -18,8 +18,8 @@
       </ion-item>
   
       <ion-item>
-        <ion-label stacked>Date</ion-label>
-        <ion-input type="date" [(ngModel)]="event.date" [min]="minDate"></ion-input>
+        <ion-label stacked>Description</ion-label>
+        <ion-input type="text" [(ngModel)]="event.description" maxlength="200"></ion-input>
       </ion-item>
    
       <ion-item>
@@ -35,8 +35,12 @@
       </ion-item>
    
       <ion-item>
-        <ion-label stacked>All Day?</ion-label>
+        <ion-label>All Day?</ion-label>
         <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>On every month?</ion-label>
+        <ion-checkbox [(ngModel)]="event.monthLoop"></ion-checkbox>
       </ion-item>
       <button ion-button block icon-left color="dark" (click)="save()">
         <ion-icon name="checkmark"></ion-icon> Add Event

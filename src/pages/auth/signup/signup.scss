@@ -2,7 +2,7 @@
 
 page-signup {
 
-    .login {
+    .signup {
         background-color: #777;
         font-family: $font-primary;
 
@@ -58,14 +58,14 @@ page-signup {
                 }
             }
         }
-    }
 
-    .ion-invalid.ion-touched ion-label {
-        color: var(--ion-color-danger);
-    }
-
-    /** For form invalid field for Angular*/
-    input.ng-invalid.ng-touched{
-        border: 1px solid red;
+        .ion-invalid.ion-touched ion-label {
+            color: var(--ion-color-danger);
+        }
+    
+        /** For form invalid field for Angular*/
+        input.ng-invalid.ng-touched{
+            border: 1px solid red;
+        }
     }
 }
