@@ -14,6 +14,7 @@ import { LauncherPageModule } from '../pages/launcher/launcher.module';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push } from '@ionic-native/push';
+import { Device } from '@ionic-native/device';
 
 // Service Providers
 import { AppProvider } from './app.provider';
@@ -55,6 +56,7 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
     StatusBar,
     SplashScreen,
     Push,
+    Device,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     {
       provide: HTTP_INTERCEPTORS,
