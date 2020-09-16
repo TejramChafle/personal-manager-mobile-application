@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { AuthProvider } from '../pages/auth/auth.provider';
+import { Device } from '@ionic-native/device';
 
 @Component({
   templateUrl: 'app.component.html'
@@ -30,7 +31,8 @@ export class Application implements OnInit {
     public splashScreen: SplashScreen,
     private push: Push,
     public appProvider: AppProvider,
-    public authProvider: AuthProvider
+    public authProvider: AuthProvider,
+    public device: Device
   ) {
     this.initializeApp();
 
@@ -98,7 +100,7 @@ export class Application implements OnInit {
 
     pushObject.on('notification').subscribe((notification: any) => {
       console.log('Received a notification', notification);
-      alert('Received a notification '+ JSON.stringify(notification));
+      alert('Received a notification ' + JSON.stringify(notification));
     });
 
     pushObject.on('registration').subscribe((registration: any) => {
@@ -109,9 +111,21 @@ export class Application implements OnInit {
 
     pushObject.on('error').subscribe(error => {
       console.error('Error with Push plugin', error);
-      alert('Error with Push plugin '+JSON.stringify(error));
+      alert('Error with Push plugin ' + JSON.stringify(error));
     });
 
     // this.appProvider.registrationId = '1072996084283';
+  }
+
+
+  onSaveDevice() {
+    const device = { ...this.device, firebase_token: this.appProvider.registrationId };
+    alert(JSON.stringify(device));
+    this.authProvider.saveDeviceInformation(device).subscribe((response) => {
+      console.log('response : ', response);
+    }, (error) => {
+      console.log('error: ', error);
+    });
+
   }
 }

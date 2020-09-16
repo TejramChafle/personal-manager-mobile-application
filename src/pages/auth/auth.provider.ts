@@ -116,4 +116,19 @@ export class AuthProvider {
         this.auth.next(null);
     }
 
+
+    // Save device information on server
+    public saveDeviceInformation(device): Observable<any> {
+        return this._http.post(FIREBASE_CONFIG.API_KEY + 'push/save-device-information', device).pipe(
+          tap((result) => {
+            // this.auth.next(auth);
+            console.log(result);
+          }),
+          catchError((error) => {
+            // return throwError(error);
+            return error;
+          })
+        )
+      }
+
 }
