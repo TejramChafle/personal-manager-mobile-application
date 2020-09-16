@@ -119,7 +119,7 @@ export class Application implements OnInit {
 
 
   onSaveDevice() {
-    const device = { ...this.device, firebase_token: this.appProvider.registrationId };
+    const device = { ...this.device, firebase_token: this.appProvider.registrationId, user: this.authProvider.user.user.id };
     alert(JSON.stringify(device));
     this.authProvider.saveDeviceInformation(device).subscribe((response) => {
       console.log('response : ', response);
