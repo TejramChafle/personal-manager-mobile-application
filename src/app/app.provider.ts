@@ -14,6 +14,7 @@ import { LoadingController } from 'ionic-angular';
 export class AppProvider {
   registrationId: string;
   loading: any;
+  device: any;
 
   constructor(public http: HttpClient, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello AppProvider Provider');
@@ -63,7 +64,7 @@ export class AppProvider {
   }
 
 
-  // Calculate the time difference between two dates in Days, Hours and Minutes 
+  // Calculate the time difference between two dates in Days, Hours and Minutes
   timeDifference(time) {
     var startTime;
     var endTime;

@@ -26,4 +26,8 @@
     <ion-textarea placeholder="Enter a description" [value]="appProvider.registrationId"></ion-textarea>
   </ion-item>
 
+  <ion-item>
+    {{ appProvider.device | json }}
+  </ion-item>
+
 </ion-content>

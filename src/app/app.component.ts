@@ -115,17 +115,27 @@ export class Application implements OnInit {
     });
 
     // this.appProvider.registrationId = '1072996084283';
+
+    // Assign device
+    this.appProvider.device = this.device;
+
   }
 
 
   onSaveDevice() {
     const device = { ...this.device, firebase_token: this.appProvider.registrationId, user: this.authProvider.user.user.id };
     alert(JSON.stringify(device));
-    this.authProvider.saveDeviceInformation(device).subscribe((response) => {
-      console.log('response : ', response);
-    }, (error) => {
-      console.log('error: ', error);
-    });
+
+    if (this.appProvider.device && this.appProvider.registrationId) {
+      this.authProvider.saveDeviceInformation(device).subscribe((response) => {
+        console.log('response : ', response);
+        alert(response.message);
+      }, (error) => {
+        console.log('error: ', error);
+      });
+    } else {
+      alert('Device information and firebase token missing. Can\'t save on server.');
+    }
 
   }
 }
