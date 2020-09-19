@@ -7,13 +7,16 @@ page-signup {
         font-family: $font-primary;
 
         form {
-            .input.ng-touched.ng-dirty.ng-valid {
+            /* .input.ng-touched.ng-dirty.ng-valid {
                 border-bottom: 2px solid #26A69A;
             }
     
             .input.ng-touched.ng-dirty.ng-invalid {
                 border-bottom: 2px solid #E57373;
             }
+            .input.ng-untouched.ng-pristine.ng-invalid {
+                border-bottom: 2px solid #fefefe;
+            } */
         }
 
         input { 
@@ -66,6 +69,10 @@ page-signup {
         /** For form invalid field for Angular*/
         input.ng-invalid.ng-touched{
             border: 1px solid red;
+        }
+
+        .item-label-stacked.ng-untouched {
+            border-bottom: 1px solid #999 !important;
         }
     }
 }

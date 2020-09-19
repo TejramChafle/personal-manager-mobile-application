@@ -29,4 +29,8 @@ page-signin {
             }
         }
     }
+
+    .item-label-stacked.ng-untouched {
+        border-bottom: 1px solid #999 !important;
+    }
 }
