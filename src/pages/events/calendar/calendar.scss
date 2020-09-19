@@ -21,6 +21,9 @@ page-calendar {
     }
 
     .calendar {
+        &__view-title {
+            text-align: center;
+        }
         .monthview-container {
             .slides {
                 .swiper-container {
@@ -30,6 +33,10 @@ page-calendar {
                             border: none;
                             font-size: 1.5rem;
                             line-height: 1.8rem;
+                        }
+
+                        .table.monthview-datetable > thead > tr > th {
+                            border: none;
                         }
                     }
                 }

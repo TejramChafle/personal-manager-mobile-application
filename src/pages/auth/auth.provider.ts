@@ -124,6 +124,15 @@ export class AuthProvider {
                 console.log(result);
                 // TODO: Once the device token is registered, need to save in user devices
                 alert('Device registered with this information: ' + JSON.stringify(result));
+
+                // Update the logged in user information
+                if (result['user']) {
+                    let auth  = JSON.parse(localStorage.getItem('auth'));
+                    auth.user = result['user'];
+                    localStorage.setItem('auth', JSON.stringify(auth));
+                    alert('About to update auth: '+ JSON.stringify(auth));
+                    this.auth.next(auth);
+                }
             }),
             catchError((error) => {
                 // return throwError(error);

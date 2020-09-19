@@ -4,19 +4,21 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      {{ viewTitle }}
+      Calender
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addEvent()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <div class="calendar__view-title">
+    <h1>{{ viewTitle }}</h1>
+  </div>
   <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
     (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)" step="30" class="calendar">
   </calendar>
+
+  <ion-fab right bottom>
+    <button ion-fab color="dark" (click)="addEvent()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>

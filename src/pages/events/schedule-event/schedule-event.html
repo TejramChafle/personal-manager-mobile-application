@@ -25,13 +25,13 @@
       <ion-item>
         <ion-label stacked>Start Time</ion-label>
         <!-- <ion-input type="time" [(ngModel)]="event.startTime"></ion-input> -->
-        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm A" pickerFormat="MMM D HH:mm A" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
       </ion-item>
    
       <ion-item>
         <ion-label stacked>End Time</ion-label>
         <!-- <ion-input type="time" [(ngModel)]="event.endTime"></ion-input> -->
-        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm A" pickerFormat="MMM D:HH:mm A" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
       </ion-item>
    
       <ion-item>
