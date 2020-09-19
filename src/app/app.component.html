@@ -19,6 +19,9 @@
       <button ion-item (click)="onSaveDevice()">
         <ion-icon name="notification" item-left></ion-icon> Save Device
       </button>
+      <button ion-item (click)="onSendNotification()">
+        <ion-icon name="notification" item-left></ion-icon> Send notification
+      </button>
     </ion-list>
 
     Device information: {{device | json}}

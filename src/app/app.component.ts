@@ -52,6 +52,15 @@ export class Application implements OnInit {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // Check the device information, firebase token on server
+      setTimeout(() => {
+        this.authProvider.performCheckAndSaveDeviceOnServer({
+          device: this.device,
+          firebase_token: this.appProvider.registrationId
+        });
+      }, 1500)
+
     });
   }
 
@@ -137,5 +146,14 @@ export class Application implements OnInit {
       alert('Firebase token missing. Can\'t save on server.');
     }
 
+  }
+
+  onSendNotification() {
+    this.authProvider.sendNotification().subscribe((response) => {
+      console.log('sendNotification response : ', response);
+      alert(response.message);
+    }, (error) => {
+      console.log('error: ', error);
+    });
   }
 }
