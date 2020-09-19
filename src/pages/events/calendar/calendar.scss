@@ -1,4 +1,7 @@
+@import '../../../theme/styles.scss';
+
 page-calendar {
+    font-family: $font-primary;
     .schedule-modal {
         position: static;
         display: block;
@@ -15,5 +18,45 @@ page-calendar {
         height: 80%;
         contain: strict;
         margin: 50px auto;
+    }
+
+    .calendar {
+        .monthview-container {
+            .slides {
+                .swiper-container {
+                    .swiper-wrapper {
+                        .table.monthview-datetable > tbody > tr > td {
+                            padding: 15px;
+                            border: none;
+                            font-size: 1.5rem;
+                            line-height: 1.8rem;
+                        }
+                    }
+                }
+            }
+            .event-detail-container {
+                .item {
+                    margin: 10px;
+                    border-radius: 10px;
+                    background-color: #26A69A;
+                    color: aliceblue;
+                    font-size: 1.5rem;
+                    line-height: 1.8rem;
+                    box-sizing: border-box;
+                    .no-events-label {
+                        color: aliceblue;
+                    }
+                }
+            }
+        }
+
+        .monthview-primary-with-event, .monthview-selected, .monthview-current  {
+            border-radius: 50%;
+        }
+
+        .monthview-selected {
+            background-color: #26A69A;
+        }
+        
     }
 }

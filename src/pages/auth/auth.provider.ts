@@ -120,15 +120,63 @@ export class AuthProvider {
     // Save device information on server
     public saveDeviceInformation(device): Observable<any> {
         return this._http.post(FIREBASE_CONFIG.API_KEY + 'push/save-device-information', device).pipe(
-          tap((result) => {
-            // this.auth.next(auth);
-            console.log(result);
-          }),
-          catchError((error) => {
-            // return throwError(error);
-            return error;
-          })
+            tap((result) => {
+                console.log(result);
+                // TODO: Once the device token is registered, need to save in user devices
+                alert('Device registered with this information: ' + JSON.stringify(result));
+            }),
+            catchError((error) => {
+                // return throwError(error);
+                return error;
+            })
         )
-      }
+    }
+
+    public sendNotification(): Observable<any> {
+        const auth = { user: this.user.user.id };
+        return this._http.post(FIREBASE_CONFIG.API_KEY + 'push/send-notification', auth).pipe(
+            tap((result) => {
+                // this.auth.next(auth);
+                console.log(result);
+            }),
+            catchError((error) => {
+                // return throwError(error);
+                return error;
+            })
+        )
+    }
+
+
+    // Perform device and firebase token check whenever user opens application, save if the token is not registered
+    performCheckAndSaveDeviceOnServer(data) {
+
+        // Check if firebase token is available / If not then assign from app service
+        data.firebase_token = data.firebase_token || this._appService.registrationId;
+
+        // Check if the firebase token is aready registered
+        let token = this.user.user.devices.find((device)=> {
+            return device.firebase_token && device.firebase_token == data.firebase_token;
+        });
+
+        console.log('found token', token);
+        alert('found token ' + JSON.stringify(token));
+
+        // If token doesn't exist in device registered, then register a device
+        if (!token) {
+            const device = { ...data.device, firebase_token: data.firebase_token, user: this.user.user.id };
+            alert(JSON.stringify(device));
+            if (data.firebase_token) {
+                this.saveDeviceInformation(device).subscribe((response) => {
+                    console.log('response : ', response);
+                    alert(response.message);
+                }, (error) => {
+                    console.log('error: ', error);
+                    alert('Error before saving information: ' + JSON.stringify(error));
+                });
+            } else {
+                alert('Device information and firebase token missing. Can\'t save on server.');
+            }
+        }
+    }
 
 }
