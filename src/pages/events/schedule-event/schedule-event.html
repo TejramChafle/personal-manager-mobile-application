@@ -2,7 +2,7 @@
   <ion-navbar color="dark">
     <ion-buttons start>
       <button ion-button icon-only (click)="cancel()">
-        <ion-icon name="close"></ion-icon>
+        <ion-icon name="close" item-left></ion-icon> CLOSE
       </button>
     </ion-buttons>
     <ion-title>Event Details</ion-title>
@@ -10,41 +10,48 @@
 </ion-header>
  
 <ion-content padding>
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-label stacked>Title</ion-label>
-        <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>Description</ion-label>
-        <ion-input type="text" [(ngModel)]="event.description" maxlength="200"></ion-input>
-      </ion-item>
-   
-      <ion-item>
-        <ion-label stacked>Start Time</ion-label>
-        <!-- <ion-input type="time" [(ngModel)]="event.startTime"></ion-input> -->
-        <ion-datetime displayFormat="MM/DD/YYYY HH:mm A" pickerFormat="MMM D HH:mm A" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
-      </ion-item>
-   
-      <ion-item>
-        <ion-label stacked>End Time</ion-label>
-        <!-- <ion-input type="time" [(ngModel)]="event.endTime"></ion-input> -->
-        <ion-datetime displayFormat="MM/DD/YYYY HH:mm A" pickerFormat="MMM D:HH:mm A" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
-      </ion-item>
-   
-      <ion-item>
-        <ion-label>All Day?</ion-label>
-        <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>On every month?</ion-label>
-        <ion-checkbox [(ngModel)]="event.monthLoop"></ion-checkbox>
-      </ion-item>
-      <button ion-button block icon-left color="dark" (click)="save()">
-        <ion-icon name="checkmark"></ion-icon> Add Event
-      </button>
-    </ion-card-content>
-  </ion-card>
+  <ion-item>
+    <ion-label floating>Title</ion-label>
+    <ion-input type="text" [(ngModel)]="event.title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Description</ion-label>
+    <ion-textarea type="text" [(ngModel)]="event.description" maxlength="200"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Start Date</ion-label>
+    <ion-input type="date" [(ngModel)]="event.startDate" [min]="minDate"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Start Time</ion-label>
+    <ion-input type="time" [(ngModel)]="event.startTime"></ion-input>
+    <!-- <ion-datetime displayFormat="MM/DD/YYYY HH:mm A" pickerFormat="MMM D HH:mm A" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime> -->
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>End Date</ion-label>
+    <ion-input type="date" [(ngModel)]="event.endDate" [min]="event.startDate"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>End Time</ion-label>
+    <ion-input type="time" [(ngModel)]="event.endTime"></ion-input>
+    <!-- <ion-datetime displayFormat="MM/DD/YYYY HH:mm A" pickerFormat="MMM D:HH:mm A" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime> -->
+  </ion-item>
+
+  <ion-item>
+    <ion-label>All Day?</ion-label>
+    <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+  </ion-item>
+  <ion-item style="border-bottom: none;">
+    <ion-label>This event will occur on every month of the selected date</ion-label>
+    <ion-checkbox [(ngModel)]="event.monthLoop"></ion-checkbox>
+  </ion-item>
+  <br>
+  <button ion-button block icon-left color="dark" (click)="save()">
+    <ion-icon name="checkmark"></ion-icon> Add Event
+  </button>
 </ion-content>

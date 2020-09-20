@@ -3,6 +3,7 @@ import { IonicPage, NavController, ModalController, AlertController } from 'ioni
 import * as moment from 'moment';
 import { ScheduleEventPage } from '../schedule-event/schedule-event';
 import { EventsProvider } from '../events.provider';
+import { AppProvider } from '../../../app/app.provider';
 
 @IonicPage()
 @Component({
@@ -25,17 +26,20 @@ export class CalendarPage {
     public navCtrl: NavController,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private eventsProvider: EventsProvider) {
+    private eventsProvider: EventsProvider,
+    private appProvider: AppProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarPage');
-    this.eventsProvider.getEvents({}).subscribe((response)=> {
+    // Show loading while event is being saved on server
+    this.appProvider.presentLoading('Loading..');
+    this.eventsProvider.getEvents({}).subscribe((response) => {
       console.log('getEvents response', response);
       let events = [];
       if (Array.isArray(response)) {
         response.forEach(element => {
-          events.push( {
+          events.push({
             title: element.name,
             description: element.description,
             allDay: element.all_day,
@@ -52,19 +56,24 @@ export class CalendarPage {
       setTimeout(() => {
         this.eventSource = events;
         console.log(this.eventSource);
+
+        // Dismiss the loading once events polulated in calender
+        this.appProvider.dismissLoading();
       });
-      
-    }, (error)=> {
+
+    }, (error) => {
       console.log('getEvents error', error);
+      // Dismiss loading even if error encountered
+      this.appProvider.dismissLoading();
     });
   }
 
   addEvent() {
     let modal = this.modalCtrl.create(
-      ScheduleEventPage, 
+      ScheduleEventPage,
       { selectedDay: this.selectedDay },
       { showBackdrop: true, cssClass: 'schedule-modal' }
-      );
+    );
     modal.present();
     modal.onDidDismiss(data => {
       if (data) {
@@ -81,20 +90,44 @@ export class CalendarPage {
           console.log(this.eventSource);
         }); */
 
+        console.log(data);
+
+        let startDate = new Date(data.startDate);
+        console.log(data.startTime.split(':')[0]);
+        console.log(data.startTime.split(':')[1]);
+        startDate.setHours(startDate.getHours() + parseInt(data.startTime.split(':')[0]));
+        startDate.setMinutes(startDate.getMinutes() + parseInt(data.startTime.split(':')[1]));
+        let endDate = new Date(data.endDate);
+        endDate.setHours(endDate.getHours() + parseInt(data.endTime.split(':')[0]));
+        endDate.setMinutes(endDate.getMinutes() + parseInt(data.endTime.split(':')[1]));
+
+
         let eventData = {
           name: data.title,
           description: data.description,
           all_day: data.allDay,
           month_loop: data.monthLoop,
-          start_time: new Date(data.startTime),
-          end_time: new Date(data.endTime)
+          start_time: new Date(startDate),
+          end_time: new Date(endDate)
         };
 
-        this.eventsProvider.composeEvent(eventData).subscribe((response)=> {
+        console.log(eventData);
+
+        // Show loading while event is being saved on server
+        this.appProvider.presentLoading('Saving, Please wait..');
+
+        this.eventsProvider.composeEvent(eventData).subscribe((response) => {
+          // Dismiss loading after saving
+          this.appProvider.dismissLoading();
+
           console.log('composeEvent response', response);
+          
+          // Refresh calender after adding new event. Get the latest event from server
           this.ionViewDidLoad();
-        }, (error)=> {
+        }, (error) => {
           console.log('composeEvent error', error);
+          // Dismiss loading even if error encountered
+          this.appProvider.dismissLoading();
         });
 
       }

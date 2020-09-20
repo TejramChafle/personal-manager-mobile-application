@@ -32,15 +32,15 @@ export class AppProvider {
 
   public handleError(error) {
     console.log(error);
-    if (error.error.error.message == 'INVALID_ID_TOKEN') {
+    if (error.error.message == 'INVALID_ID_TOKEN') {
       localStorage.clear();
       // this._router.navigate(['/login']);
-    } else if (error.statusText == 'Unauthorized' && error.error.error == 'Auth token is expired') {
+    } else if (error.statusText == 'Unauthorized' && error.error.message == 'Auth token is expired') {
       this.actionMessage({ text: 'Login expired, Please login again.', title: 'Session expired!' });
       localStorage.clear();
       // this._router.navigate(['/login']);
     } else {
-      this.actionMessage({ title: 'Alert!', text: error.error.error.message });
+      this.actionMessage({ title: 'Alert!', text: error.error.message });
     }
   }
 

@@ -42,9 +42,14 @@ page-calendar {
                 }
             }
             .event-detail-container {
+                display: flex;
+                box-sizing: border-box;
+                flex-direction: column;
+                margin-right: 25px;
+                padding-top: 10px;
                 .item {
-                    margin: 10px;
-                    border-radius: 10px;
+                    margin: 0px 10px 10px;
+                    border-radius: 5px;
                     background-color: #26A69A;
                     color: aliceblue;
                     font-size: 1.5rem;
@@ -52,6 +57,13 @@ page-calendar {
                     box-sizing: border-box;
                     .no-events-label {
                         color: aliceblue;
+                    }
+                    .monthview-eventdetail-timecolumn {
+                        width: 100px;
+                        text-transform: capitalize;
+                        display: inline-block;
+                        padding: 0;
+                        margin-bottom: -5px;
                     }
                 }
             }

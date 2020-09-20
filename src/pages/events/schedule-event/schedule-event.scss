@@ -1,3 +1,22 @@
 page-schedule-event {
+    ion-modal.schedule-modal {
+        left: 5%;
+        top: 50px;
+        bottom: 50px;
+        position: absolute;
+        display: block;
+        width: 90%;
+        height: auto;
+        contain: strict;
+    }
 
+    .item {
+        border-bottom: 1px solid #777;
+    }
+    .item-checkbox {
+        &:last-child {
+            border-bottom: transparent;
+            padding-bottom: 15px;
+        }
+    }
 }

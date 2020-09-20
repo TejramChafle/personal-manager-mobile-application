@@ -168,12 +168,12 @@ export class AuthProvider {
         });
 
         console.log('found token', token);
-        alert('found token ' + JSON.stringify(token));
+        // alert('found token ' + JSON.stringify(token));
 
         // If token doesn't exist in device registered, then register a device
         if (!token) {
             const device = { ...data.device, firebase_token: data.firebase_token, user: this.user.user.id };
-            alert(JSON.stringify(device));
+            // alert(JSON.stringify(device));
             if (data.firebase_token) {
                 this.saveDeviceInformation(device).subscribe((response) => {
                     console.log('response : ', response);
@@ -183,7 +183,7 @@ export class AuthProvider {
                     alert('Error before saving information: ' + JSON.stringify(error));
                 });
             } else {
-                alert('Device information and firebase token missing. Can\'t save on server.');
+                // alert('Device information and firebase token missing. Can\'t save on server.');
             }
         }
     }
