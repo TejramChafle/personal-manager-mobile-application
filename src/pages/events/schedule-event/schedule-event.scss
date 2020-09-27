@@ -1,4 +1,6 @@
+@import '../../../theme/styles.scss';
 page-schedule-event {
+    font-family: $font-primary;
     ion-modal.schedule-modal {
         left: 5%;
         top: 50px;
@@ -11,7 +13,7 @@ page-schedule-event {
     }
 
     .item {
-        border-bottom: 1px solid #777;
+        border-bottom: 1px solid transparent;
     }
     .item-checkbox {
         &:last-child {

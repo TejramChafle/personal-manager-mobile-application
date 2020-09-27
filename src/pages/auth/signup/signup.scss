@@ -67,12 +67,16 @@ page-signup {
         }
     
         /** For form invalid field for Angular*/
-        input.ng-invalid.ng-touched{
+        input.ng-invalid.ng-touched {
             border: 1px solid red;
         }
 
-        .item-label-stacked.ng-untouched {
+        /* .item-label-stacked.ng-untouched {
             border-bottom: 1px solid #999 !important;
+        } */
+
+        .item {
+            border-bottom: 1px solid transparent;
         }
     }
 }

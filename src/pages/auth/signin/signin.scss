@@ -30,7 +30,12 @@ page-signin {
         }
     }
 
-    .item-label-stacked.ng-untouched {
+    /* .item-label-stacked.ng-untouched {
         border-bottom: 1px solid #999 !important;
+        // border-bottom: 1px solid transparent;
+    } */
+
+    .item {
+        border-bottom: 1px solid transparent;
     }
 }

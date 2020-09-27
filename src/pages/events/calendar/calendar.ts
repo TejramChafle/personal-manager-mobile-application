@@ -16,11 +16,8 @@ export class CalendarPage {
   eventSource = [];
   viewTitle: string;
   selectedDay = new Date();
-
-  calendar = {
-    mode: 'month',
-    currentDate: new Date()
-  };
+  calenderMode = 'month';
+  calendar: any = {};
 
   constructor(
     public navCtrl: NavController,
@@ -28,10 +25,13 @@ export class CalendarPage {
     private alertCtrl: AlertController,
     private eventsProvider: EventsProvider,
     private appProvider: AppProvider) {
+      this.calendar = {
+        mode: 'month',
+        currentDate: new Date()
+      };
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarPage');
     // Show loading while event is being saved on server
     this.appProvider.presentLoading('Loading..');
     this.eventsProvider.getEvents({}).subscribe((response) => {
@@ -93,14 +93,11 @@ export class CalendarPage {
         console.log(data);
 
         let startDate = new Date(data.startDate);
-        console.log(data.startTime.split(':')[0]);
-        console.log(data.startTime.split(':')[1]);
-        startDate.setHours(startDate.getHours() + parseInt(data.startTime.split(':')[0]));
-        startDate.setMinutes(startDate.getMinutes() + parseInt(data.startTime.split(':')[1]));
+        startDate.setHours(parseInt(data.startTime.split(':')[0]));
+        startDate.setMinutes(parseInt(data.startTime.split(':')[1]));
         let endDate = new Date(data.endDate);
-        endDate.setHours(endDate.getHours() + parseInt(data.endTime.split(':')[0]));
-        endDate.setMinutes(endDate.getMinutes() + parseInt(data.endTime.split(':')[1]));
-
+        endDate.setHours(parseInt(data.endTime.split(':')[0]));
+        endDate.setMinutes(parseInt(data.endTime.split(':')[1]));
 
         let eventData = {
           name: data.title,
@@ -152,6 +149,11 @@ export class CalendarPage {
 
   onTimeSelected(ev) {
     this.selectedDay = ev.selectedTime;
+  }
+
+  // Change the calender view on change of mode
+  onModeChange() {
+    this.calendar.mode = this.calenderMode;
   }
 
 }

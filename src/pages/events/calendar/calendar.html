@@ -10,6 +10,14 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Calender Mode</ion-label>
+    <ion-select [(ngModel)]="calenderMode" (ionChange)="onModeChange()">
+      <ion-option value="month">Month</ion-option>
+      <ion-option value="week">Week</ion-option>
+      <ion-option value="day">Day</ion-option>
+    </ion-select>
+  </ion-item>
   <div class="calendar__view-title">
     <h1>{{ viewTitle }}</h1>
   </div>
