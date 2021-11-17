@@ -25,10 +25,10 @@ export class CalendarPage {
     private alertCtrl: AlertController,
     private eventsProvider: EventsProvider,
     private appProvider: AppProvider) {
-      this.calendar = {
-        mode: 'month',
-        currentDate: new Date()
-      };
+    this.calendar = {
+      mode: 'month',
+      currentDate: new Date()
+    };
   }
 
   ionViewDidLoad() {
@@ -118,7 +118,7 @@ export class CalendarPage {
           this.appProvider.dismissLoading();
 
           console.log('composeEvent response', response);
-          
+
           // Refresh calender after adding new event. Get the latest event from server
           this.ionViewDidLoad();
         }, (error) => {
@@ -139,12 +139,14 @@ export class CalendarPage {
     let start = moment(event.startTime).format('LLLL');
     let end = moment(event.endTime).format('LLLL');
 
-    let alert = this.alertCtrl.create({
+    /* let alert = this.alertCtrl.create({
       title: '' + event.title,
       subTitle: 'From: ' + start + '<br>To: ' + end,
       buttons: ['OK']
     })
-    alert.present();
+    alert.present(); */
+
+    this.navCtrl.push('EventPage', { event });
   }
 
   onTimeSelected(ev) {

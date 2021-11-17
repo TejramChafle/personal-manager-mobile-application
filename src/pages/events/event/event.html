@@ -1,0 +1,35 @@
+<!--
+  Generated template for the EventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>{{event.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-divider color="light">
+    {{event.title}}
+  </ion-item-divider>
+  <p>{{event.description}}</p>
+  <ion-item-divider color="light">
+    STARTING ON
+  </ion-item-divider>
+  <p>{{event.startTime | date:'EEEE, MMMM d, y, h:mm a'}}</p>
+  <ion-item-divider color="light">
+    ENDS AT
+  </ion-item-divider>
+  <p>{{event.endTime | date:'EEEE, MMMM d, y, h:mm a'}}</p>
+  <ion-item-divider color="light">All day event? <h3 item-end>{{event.allDay? 'YES' : 'NO'}}</h3>
+    <p></p>
+  </ion-item-divider>
+  <ion-item-divider color="light">Monthly Event? <h3 item-end>{{event.monthLoop? 'YES' : 'NO'}}</h3>
+  </ion-item-divider>
+
+  <ion-fab right bottom>
+    <button ion-fab color="dark" (click)="editEvent()"><ion-icon name="create-outline"></ion-icon></button>
+  </ion-fab>
+</ion-content>
